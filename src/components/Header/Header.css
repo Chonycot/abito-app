@@ -1,0 +1,48 @@
+.header {
+    padding-top: 34px;
+    padding-bottom: 24px;
+}
+
+.header-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.header-logo img {
+    width: 30px;
+    height: 30px;
+}
+
+.header-logo span {
+    line-height: 28px;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.header-burder {
+    width: 30px;
+    height: 19px;
+    display: none;
+}
+
+@media (max-width: 786px) {
+
+    .header-controls {
+        display: none;
+    }
+
+    .header-burder {
+        width: 30px;
+        height: 19px;
+        display: block;
+    }
+
+    
+}
