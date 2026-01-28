@@ -3,9 +3,9 @@ export const cardArray = [
     {
         id: 0,
         title: 'Первый товар',
-        price: '170 ₽',
-        adress: 'Казань, р-н Вахитовский',
-        date: '10 июля 11:39',
+        price: '200 ₽',
+        adress: 'Воронеж, ул. Фридриха Энгельса',
+        date: '10 июля 11:50',
         img: '/images/img_1.png'
     },
     {

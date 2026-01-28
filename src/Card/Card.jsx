@@ -1,7 +1,11 @@
 import './Card.css'
 
-export const Card = ({ title, price, address, date, img }) => {
-
+export const Card = ({ title, price, adress, date, img }) => {
+    console.log(title);
+    console.log(price);
+    console.log(adress);
+    console.log(date);
+    
     return (
         <a href="./product.html"> 
             <div className="content-main_list-item-img">
@@ -15,7 +19,7 @@ export const Card = ({ title, price, address, date, img }) => {
             </strong>
             <div className="content-main_list-item-desc-box">
                 <span className="content-main_list-item-desc">
-                    {address}
+                    {adress}
                 </span>
                 <span className="content-main_list-item-desc">
                     {date}
