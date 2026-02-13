@@ -1,0 +1,49 @@
+
+.page{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+#page_img{
+    width: 420px;
+    height: 300px;
+}
+
+#page_txt{
+    width: 400px;
+    Line-height: 1,7;
+    font-size: 20px;
+}
+
+.price{
+    font-size: 30px;
+}
+
+.seller {
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+
+}
+
+.seller_check{
+    background-color:rgb(149, 243, 160);
+    border-color: rgb(53, 194, 65);
+}
+
+.price_Btn{
+    width: 250px;
+    height: 50px;
+    background-color: rgb(37, 110, 235);
+    border-radius: 5px;
+    color: white;
+}
+
+.price_Btn:hover{
+    background-color: rgb(37, 77, 235);
+}
+
+.price_Btn:active{
+    background-color: rgb(37, 110, 235);
+}

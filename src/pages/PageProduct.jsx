@@ -1,71 +1,42 @@
+import "./product.css";
+import "../index.css";
 import { Header } from "../components/Header/Header"
-import { Card } from "../Card/Card"
 import { cardArray } from "../constants"
-import { Search } from "../components/Header/Search.jsx"
-import { useState, useRef, useEffect } from "react"
+import { useParams } from 'react-router-dom';
 
-export const Home = () => {
 
-    const [searchQuery, setSearchQuery] = useState('');
-    const [filteredCards, setFilteredCards] = useState(cardArray);
-    const searchQueryRef = useRef('');
-
-    useEffect(() => {
-        searchQueryRef.current = searchQuery;
-    }, [searchQuery]);
-
-    const handleSearchClick = (valueFromSearch) => {
-        if (!valueFromSearch.trim()) {
-            setFilteredCards(cardArray);
-
-            return;
-        }
-
-        const filtered = cardArray.filter(card => {
-            const cardTitle = card.title.toLowerCase();
-            const searchTerm = valueFromSearch.toLowerCase();
-            const includes = cardTitle.includes(searchTerm);
-
-            return includes;
-        });
-
-        setFilteredCards(filtered);
-    };
-
-    console.log(cardArray[1].title); // второй товар (индекс 1)
-    console.log(cardArray[5].title); // шестой товар (индекс 5)
+export const Page_1 = () => {
+    const { id } = useParams();
+    const currentProduct = cardArray.find(item => item.id === Number(id));
+    console.log('id из URL:', id);
+    console.log('Тип id:', typeof id);
+    console.log('Все id товаров:', cardArray.map(item => item.id));
+    console.log('Поиск по id (строгое равенство):', cardArray.find(item => item.id === id));
+    console.log('Поиск по id (с приведением к числу):', cardArray.find(item => item.id === Number(id)));
     return (
         <>
-
             <Header />
-
             <main>
-                <section className="search">
-                    <div className="container">
-                        <Search
-                            searchValue={searchQuery}
-                            onSearchChange={setSearchQuery}
-                            onSearchClick={handleSearchClick}
-                        />
-                    </div>
-                </section>
                 <section className="content">
                     <div className="container">
                         <div className="content-box">
-                            <div className="content-main">
-                                <h2 className="content-main_title">Рекомендации для вас</h2>
-                                <div className="content-main_list">
-                                    {filteredCards.map(card => (
-                                        <Card
-                                            key={card.id}
-                                            id={card.id}
-                                            title={card.title}
-                                            price={card.price}
-                                            adress={card.adress}
-                                            date={card.date}
-                                            img={card.img}
-                                        />
-                                    ))}
+                            <div className="page content-main">
+                                <div>
+                                    <h2 className="content-main_title">
+                                        {currentProduct.title}
+                                    </h2>
+                                    <img src={`${currentProduct.img}`} alt="Самокат электричесий" id="page_img" />
+                                    <p id="page_txt">{currentProduct.txt}</p>
+                                </div>
+                                <div className="page_inf">
+                                    <p className="price">
+                                        {currentProduct.price}
+                                    </p>
+                                    <button className="price_Btn">Показать телефон</button>
+                                    <div className="seller">
+                                        <h5>ООО "Зеленоглазое такси"</h5>
+                                        <p className="seller_check">Проверенный продавец</p>
+                                    </div>
                                 </div>
                             </div>
 
@@ -114,5 +85,5 @@ export const Home = () => {
                 </section>
             </main>
         </>
-    )
+    );
 }
