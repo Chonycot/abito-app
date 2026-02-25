@@ -1,29 +1,49 @@
 import { Header } from "../components/Header/Header"
 import { Card } from "../Card/Card"
-import { cardArray } from "../constants"
 import { Search } from "../components/Header/Search.jsx"
 import { useState, useRef, useEffect } from "react"
+import { data } from "react-router-dom"
 
 export const Home = () => {
 
     const [searchQuery, setSearchQuery] = useState('');
-    const [filteredCards, setFilteredCards] = useState(cardArray);
+    const [filteredCards, setFilteredCards] = useState([]);
     const searchQueryRef = useRef('');
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         searchQueryRef.current = searchQuery;
     }, [searchQuery]);
 
-    const handleSearchClick = (valueFromSearch) => {
-        if (!valueFromSearch.trim()) {
-            setFilteredCards(cardArray);
+    useEffect(() => {
+        const firstRequest = async () => {
+            try {
+                let request = await fetch('https://fakestoreapi.com/products');
+                const requestJson = await request.json();
+                console.log(requestJson)
+                setProducts(requestJson);           // сохраняем полученные товары
+                setFilteredCards(requestJson);
+                console.log(requestJson);
 
+            } catch (err) {
+                console.log('ОШИБКА В ПЕРВОМ', err)
+            }
+
+        }
+
+        firstRequest()
+
+    }, [])
+
+    const handleSearchClick = (query) => {
+        if (!query.trim()) {
+            setFilteredCards(products);
             return;
         }
 
-        const filtered = cardArray.filter(card => {
-            const cardTitle = card.title.toLowerCase();
-            const searchTerm = valueFromSearch.toLowerCase();
+        const filtered = products.filter(product => {
+            const cardTitle = product.title.toLowerCase();
+            const searchTerm = query.toLowerCase();
             const includes = cardTitle.includes(searchTerm);
 
             return includes;
@@ -32,8 +52,7 @@ export const Home = () => {
         setFilteredCards(filtered);
     };
 
-    console.log(cardArray[1].title); // второй товар (индекс 1)
-    console.log(cardArray[5].title); // шестой товар (индекс 5)
+
     return (
         <>
 
@@ -55,7 +74,7 @@ export const Home = () => {
                             <div className="content-main">
                                 <h2 className="content-main_title">Рекомендации для вас</h2>
                                 <div className="content-main_list">
-                                    {filteredCards.map(card => (
+                                    {products.map(card => (
                                         <Card
                                             key={card.id}
                                             id={card.id}

@@ -1,4 +1,4 @@
-export const cardArray = [
+/* export const cardArray = [
 
     {
         id: 0,
@@ -55,4 +55,4 @@ export const cardArray = [
         img: '/images/page_6.png',
         txt: '✅Новый, запечатан, официальная гарантия 1 год '
     }
-]
+] */

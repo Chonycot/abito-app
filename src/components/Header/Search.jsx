@@ -5,14 +5,11 @@ import { useState } from "react"
 export const Search = (
     { searchValue, onSearchChange, onSearchClick }
 ) => {
-    console.log('Search значения', searchValue, onSearchChange, onSearchClick);
     const inputChangeOmnissia = (e) => {
-        console.log('Input изменился на:', e.target.value);
         onSearchChange(e.target.value)
     };
 
     const handleButtonClick = () => {
-        console.log('Кнопка нажата! Передаём значение:', searchValue);
         onSearchClick(searchValue);
     };
 

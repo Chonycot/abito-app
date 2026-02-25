@@ -2,7 +2,6 @@ import './Card.css'
 import { Link } from 'react-router-dom';
 
 export const Card = ({ title, price, adress, date, img, id }) => {
-    console.log('Card id:', id);
     return (
         <Link to={`/product/${id}`} className="card-link"> 
             <div className="content-main_list-item-img">

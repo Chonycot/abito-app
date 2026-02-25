@@ -3,16 +3,42 @@ import "../index.css";
 import { Header } from "../components/Header/Header"
 import { cardArray } from "../constants"
 import { useParams } from 'react-router-dom';
+import { useState, useRef, useEffect } from "react"
 
 
 export const Page_1 = () => {
+
     const { id } = useParams();
-    const currentProduct = cardArray.find(item => item.id === Number(id));
-    console.log('id из URL:', id);
-    console.log('Тип id:', typeof id);
-    console.log('Все id товаров:', cardArray.map(item => item.id));
-    console.log('Поиск по id (строгое равенство):', cardArray.find(item => item.id === id));
-    console.log('Поиск по id (с приведением к числу):', cardArray.find(item => item.id === Number(id)));
+    const [product, setProduct] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const secondeRequest = async () => {
+            try {
+                setLoading(true);
+                let requestProd = await fetch(`https://fakestoreapi.com/products/${id}`);
+                const data = await requestProd.json();
+                
+                if (!requestProd.ok) throw new Error('Товар не найден');
+                setError(null);
+                setProduct(data);
+
+
+            } catch (err) {
+                console.log('ОШИБКА ВО ВТОРОМ', err)
+                setError(err.message);
+                setProduct(null);
+            } finally {
+                setLoading(false);
+            }
+
+        }
+
+        secondeRequest()
+
+    }, [id])
+
     return (
         <>
             <Header />
@@ -23,14 +49,14 @@ export const Page_1 = () => {
                             <div className="page content-main">
                                 <div>
                                     <h2 className="content-main_title">
-                                        {currentProduct.title}
+                                        {product.title}
                                     </h2>
-                                    <img src={`${currentProduct.img}`} alt="Самокат электричесий" id="page_img" />
-                                    <p id="page_txt">{currentProduct.txt}</p>
+                                    <img src={`${product.img}`} alt="Самокат электричесий" id="page_img" />
+                                    <p id="page_txt">{product.description}</p>
                                 </div>
                                 <div className="page_inf">
                                     <p className="price">
-                                        {currentProduct.price}
+                                        {product.price}
                                     </p>
                                     <button className="price_Btn">Показать телефон</button>
                                     <div className="seller">
