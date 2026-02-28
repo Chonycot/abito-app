@@ -23,7 +23,6 @@ export const Home = () => {
                 console.log(requestJson)
                 setProducts(requestJson);           // сохраняем полученные товары
                 setFilteredCards(requestJson);
-                console.log(requestJson);
 
             } catch (err) {
                 console.log('ОШИБКА В ПЕРВОМ', err)
@@ -82,7 +81,7 @@ export const Home = () => {
                                             price={card.price}
                                             adress={card.adress}
                                             date={card.date}
-                                            img={card.img}
+                                            image={card.image}
                                         />
                                     ))}
                                 </div>

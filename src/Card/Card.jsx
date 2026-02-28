@@ -1,11 +1,11 @@
 import './Card.css'
 import { Link } from 'react-router-dom';
 
-export const Card = ({ title, price, adress, date, img, id }) => {
+export const Card = ({ title, price, adress, date, image, id }) => {
     return (
         <Link to={`/product/${id}`} className="card-link"> 
             <div className="content-main_list-item-img">
-                <img src={`${img}`} alt="cart-img" />
+                <img src={`${image}`} alt="cart-img" />
             </div>
             <h5 className="content-main_list-item-title">
                 {title}

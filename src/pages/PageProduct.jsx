@@ -2,16 +2,19 @@ import "./product.css";
 import "../index.css";
 import { Header } from "../components/Header/Header"
 import { cardArray } from "../constants"
-import { useParams } from 'react-router-dom';
+import { data, useParams } from 'react-router-dom';
 import { useState, useRef, useEffect } from "react"
 
 
 export const Page_1 = () => {
 
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
+    const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    console.log('пока все работает');
+    
 
     useEffect(() => {
         const secondeRequest = async () => {
@@ -37,7 +40,13 @@ export const Page_1 = () => {
 
         secondeRequest()
 
+         console.log('Я ЖИВ 2!')
+
     }, [id])
+
+    console.log('Я ЖИВ!')
+    console.log(data)
+
 
     return (
         <>
@@ -51,12 +60,12 @@ export const Page_1 = () => {
                                     <h2 className="content-main_title">
                                         {product.title}
                                     </h2>
-                                    <img src={`${product.img}`} alt="Самокат электричесий" id="page_img" />
+                                    <img src={`${product.image}`} alt="Самокат электричесий" id="page_img" />
                                     <p id="page_txt">{product.description}</p>
                                 </div>
                                 <div className="page_inf">
                                     <p className="price">
-                                        {product.price}
+                                        {product.price} €
                                     </p>
                                     <button className="price_Btn">Показать телефон</button>
                                     <div className="seller">
