@@ -13,7 +13,10 @@ export const Header = () => {
                                 <span>Abito</span>
                             </div>
                         </Link>
+
                         <div className="header-controls">
+                            <button className='header-them'><img src="/images/black.png" alt="" className='header-them_img' /></button>
+                            <button className='header-them'><img src="/images/white.png" alt="" className='header-them_img' /></button>
                             <button className="btn btn-outline">Вход и регистрация</button>
                             <button className="btn btn-primary">Подать заявление</button>
                         </div>
