@@ -72,7 +72,7 @@ export const Home = () => {
                         <div className="content-box">
                             <div className="content-main">
                                 <h2 className="content-main_title">Рекомендации для вас</h2>
-                                <div className="content-main_list">
+                                <div className="content-main_list">   
                                     {products.map(card => (
                                         <Card
                                             key={card.id}
